@@ -147,6 +147,13 @@ git diff -> mostra o que foi feito na branch que está trabalhando em cada arqui
 
 git diff --nameonly -> Mostra apenas o arquivo que foi modificado
 
+---------------- Desfazendo coisas -------------------------------
+
+git checkout "nome do arquivo" -> desfaz a ultima alteração feita no arquivo indicado desde que seja antes do comando git add nomedoarquivo.
+
+Caso deseje desfazer após ter feito o add, executar os seguintes comandos:
+git reset HEAD nomedoarquivo
+git checkout nomedoarquivo
 
 
 
