@@ -142,3 +142,21 @@ git log --graph -> Mostra "graficamente" o que está acontecendo com as versões
 
 git show 'hasdocommit'
 
+----------------------- diff --------------------------------------
+git diff -> mostra o que foi feito na branch que está trabalhando em cada arquivo
+
+git diff --nameonly -> Mostra apenas o arquivo que foi modificado
+
+
+
+
+
+
+
+
+-atalhos
+g s -> git status
+
+git commit -am "Edit Instrucoes_Git" -> faz o add e efetua o commit direto do arquivo que está sendo indicado.
+
+
