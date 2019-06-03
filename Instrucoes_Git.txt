@@ -1,0 +1,144 @@
+Git documentação
+
+Git Bash -> Terminal do Git
+
+
+Atualizar a branch de trabalho
+	Entrar no diretório de trabalho -> cd /c/ABL2ADVPL
+	git status -> verificar as alterações efetuadas até o momento.
+	Se houver alterações necessário executar o comando:
+		git stash -> vai salvar as alterações em uma lista interna para deixar o diretório limpo
+	Para efetuar o update executar o seguinte comando:
+		git pull -> Efetua o update para o ambiente local
+
+
+Adicionar arquivos para commit
+	1º fazer add
+		Para fazer add em todos os arquivos a partir de uma branch
+			git add . 
+		Para fazer add em arquivos específicos estando ou não dentro de uma branch	
+			git add -f tools/Bamboo/temp/UnitTestsGeral/test0last_of_method.p
+	2º fazer commit
+		Fazer o commit	
+			git commit -m "escrever a observação de commit"
+	Verificar se os commits estão corretos
+		git status
+		Se houver diferença efetuar um pull(creio que isto só foi pq estou direto na dev sem ter feito uma branch)
+			git pull origin dev
+		Efetuar um push
+			git push origin dev
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+Comandos gerais			
+	
+Deletar arquivos que foram feitos add indevidamente e não devem ser comitados     
+	Para deletar todos do ultimo add feito
+		git reset
+	Para deletar apenas o arquivo específico
+		git reset head tools/Bamboo/temp/UnitTestsGeral/test0last_of_method.p
+
+Verificar os status dos trabalhos efetuados.
+	git status  
+	
+Verificar as branch que vc possui
+	git branch
+
+Excluir pastas/arqivos da verificação de status
+	Editar o arquivo exclude(arquivo local de itens a serem ignorados, semelhante ao ignore que se refere aos itens gerais)
+		vi .git/info/exclude
+			Para salvar ESC -> CTRL + W + Q
+
+Navegar entre as branches
+	Neste caso voltar a branch dev
+		git checkout dev
+
+Criar uma nova branch
+	git checkout -b NOME_DA_NOVA_BRANCH
+	
+
+*---------- Passo a Passo Ryver -------------------------------------------------------------------------------------------------------------------*/
+Passo a Passo:
+
+Obs.: Passos 1 e 2 só precisam ser feitos uma única vez
+
+Baixar e instalar o Git (https://git-scm.com/downloads)
+
+Clone no repositório: Abra o CMD na pasta de destino (provavelmente a C:/) e digite o seguinte comando:
+git clone https://totvstfs.visualstudio.com/ABL2ADVPL/_git/ABL2ADVPL
+
+(git clone = svn checkout)
+
+Dê checkout para a branch dev com o seguinte comando:
+git checkout dev
+
+Quando for iniciar uma nova issue, crie uma nova branch com o seguinte comando:
+git checkout -b NOME_DA_NOVA_BRANCH
+
+(o ideal é que seja o ID da issue)
+("git checkout NOME_DA_BRANCH" muda sua pasta para uma branch. "git checkout -b NOME_DA_BRANCH" cria uma nova branch localmente)
+
+Resolva a issue normalmente
+
+Ao final, digite o seguinte comando:
+git add . --verbose
+
+(o verbose é desnecessário, mas acredito que seja bacana utilizar pois você consegue verificar quais alterações estão sendo adicionadas ao commit)
+
+Após o add, digite:
+git commit -m"Comentário a ser adicionado ao commit"
+
+Agora, caso seja o primeiro commit desta branch, digite:
+git push origin NOME_DA_NOVA_BRANCH
+
+Ao final do processo, sua nova branch estará criada também remotamente. Abra um Pull Request na home do projeto (https://totvstfs.visualstudio.com/_git/ABL2ADVPL) sempre com a base para dev
+
+Quando for resolver uma nova issue, garanta SEMPRE que você, antes de abrir a nova branch, esteja na branch dev atualizada
+git checkout dev
+git pull
+
+Algumas observações:
+
+Uma branch para o git é simplesmente um diff, não um fork. Portanto, é encorajado o uso de muitas branches, então usem sem medo branches locais e remotas, sempre que acharem necessário.
+Um add para o SVN é para adição no versionamento. Um add para o git é uma adição de alteração no commit. Portanto, todo commit deve ser precedido de ao menos um add.
+Se acharem necessário, façam mais de um commit por vez, antes de dar push para a branch. Cada commit é um versionamento local, que não altera a branch remota.
+NUNCA deem push na branch dev, MUITO MENOS na branch master. Pelo workflow, trabalharemos sempre na dev, e ao fim de cada sprint, farei o merge na master.
+O Bamboo já está funcionando no git.
+Podem commitar tudo que quiserem no SVN até amanhã. Mas quando chegarem na quinta, estará tudo mergeado no git. Recomendo que passemos usar o git a partir dai, mas caso precisem ainda de commits no SVN, eu posso fazer o merge depois.
+O git tá da versão 1622 pra frente do SVN.
+Eu pessoalmente não gosto de usar interfaces pro git, porque acho que fica mais engessado. Mas existem o git GUI e o Tortoise Git.
+Conflitos alteram o arquivo pai com tags especificas de "remote copy" e "working copy", e criam cópias dos arquivos remoto e local com extensões diferentes. Para o git aceitar o commit do merge de conflitos, vocês tem que deletar os arquivos criados e o arquivo corrente deve estar sem as tags de remote e working. Caso contrário, ele ainda acusará que o commit não pode ser feito.
+Comandos úteis (além dos já citados):
+
+git diff
+Mostra a diferença do seu branch local com o branch remoto de mesmo nome
+
+git branch
+Mostra qual branch você está no momento
+
+git branch -a
+Lista de branches existentes. Os vermelhos são os remotos não baixados
+
+git k
+Abre uma interface que mostra os pontos de merge do repositorio corrente
+
+git checkout .
+Limpa sua branch corrente de todas alterações não comitadas. Basicamente, volta a branch ao seu estado anterior ao ultimo commit.
+
+git revert HEAD~1
+Reverte seu último commit. O numero pode ser trocado para o número de commits que você quer reverter. Obs.: "git revert" reverte commits locais sem push realizado
+
+----------------------- logs ------------------------------------------
+git log -> visualiza os logs(geral)
+
+git log --decorade -> Visualização(geral) detalhada
+
+git log --author="egidio" -> Visualização por author
+
+git shortlog -> Visualização que mostra por ordem alfabética os autores e o que fizeram
+
+git shortlog -sn -> Mostra os autores e a quantidade de commits
+
+git log --graph -> Mostra "graficamente" o que está acontecendo com as versões
+
+git show 'hasdocommit'
+
