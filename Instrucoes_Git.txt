@@ -155,7 +155,50 @@ Caso deseje desfazer após ter feito o add, executar os seguintes comandos:
 git reset HEAD nomedoarquivo
 git checkout nomedoarquivo
 
+git reset --soft hasdocommit 
+	--soft - pega as modificações e voltar o commit o arquivo foca staged
+	--mixed - volta os arquivo antes do staged - modified
+	--hard - ignora tudo e volta ao inicio
+	
+  Obs - Deve sempre ser informada a penultima hash ou a hash para qual vc quer voltar por isto não pode ser a última.
 
+
+--- criando um repositorio no GItHub(repositorio remoto) ------------------
+https://github.com/Jegjr/git-course
+Jegjr
+EgidioJr
+
+---- criando e adicionando uma chave ssh no GItHub ------------------------
+
+
+https://help.github.com/en/articles/connecting-to-github-with-ssh
+
+1 - Generate https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+	 ssh-keygen -t rsa -b 4096 -C "jegjrdsi@gmail.com
+	 SHA256:M0YqJqoZbX7hZycGwFX4tSnQbUTVi8/A9nEfH2TaDjI jegjrdsi@gmail.com
+	 
+	 cd ~/.ssh
+	 ls -> id_rsa   id_rsa.pub
+	 cat id_rsa.pub -> copiar e colar o conteúdo
+	 
+	 
+2 - Add
+
+	github.com
+	settings
+	SSH and GPG keys
+		SSH keys -> New ssh -> colar o conteúdo da id_rsa.pub
+
+
+----- ligando repositorio remoto com o local ----------------------------
+https://github.com/Jegjr/git-course
+
+git remote add origin https://github.com/Jegjr/git-course.git
+
+$ git remote
+4 git remote -v
+
+--- Enviando mudanças para um repositório remoto ---------
 
 
 
