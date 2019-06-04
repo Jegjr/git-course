@@ -161,9 +161,10 @@ git checkout nomedoarquivo
 
 
 
+
 -atalhos
 g s -> git status
 
-git commit -am "Edit Instrucoes_Git" -> faz o add e efetua o commit direto do arquivo que está sendo indicado.
+git commit -am "Edit Instrucoes_Git" -> faz o add e efetua o commit inserindo a mensagem em todos os arquivoso que estiverem modificados.
 
 
